@@ -62,7 +62,7 @@ input{
     outline: none;
 }
 input:hover{
-    outline: 1px solid var(--cor0);
+    border: 1px solid var(--cor0);
 }
 label{
     display: block;
