@@ -3,21 +3,14 @@ var dataAtual = new Date();
 
 // Obtém o dia, mês e ano
 var dia = dataAtual.getDate();
-var mes = dataAtual.getMonth() + 1; // Os meses em JavaScript começam do zero, então adicionamos 1
+var mes = dataAtual.getMonth() + 1; // Os meses em JavaScript começam do zero, então 
 var ano = dataAtual.getFullYear();
-
 
 var ultimoDiaDoMes = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 1, 0);
 var maximoDias = ultimoDiaDoMes.getDate();
-console.log(maximoDias)
-// Exibe os resultados no console
-console.log("Dia:", dia);
-console.log("Mês:", mes);
-console.log("Ano:", ano);
-
-console.log(`Voce tem ${ano-1998} anos  ${mes-6} meses e ${dia-9} dias`)
 
 var ageResult = document.querySelectorAll('.age-result');
+var dayInput = document.getElementById('iday')
 var monthInput = document.getElementById('imonth')
 var yearInput = document.getElementById('iyear')
 
@@ -25,19 +18,13 @@ var inputInfo = document.querySelectorAll('.info-input')
 var titleInput = document.querySelectorAll('.title')
 var txtErro = document.querySelectorAll('.text-erro')
 
-function sendResult(){
-    if(inputInfo[0].value == '' & inputInfo[1].value == ''& inputInfo[2].value == '' ){
-       dayErro();
-       monthErro();
-       yaerErro();
-    }
-
-    else{
-        removeErro();
-        ageResult[0].innerHTML = ano - yearInput.value;
-        ageResult[1].innerHTML = mes - monthInput.value;
-        ageResult[2].innerHTML = dia - dayInput.value;
-    }
+function validarData(ano1, mes1, dia1) {
+    const data = new Date(ano1, mes1 - 1, dia1);
+    return (
+      data.getFullYear() === ano1 &&
+      data.getMonth() === mes1 - 1 &&
+      data.getDate() === dia1
+    );
 }
 
 function dayErro(){
@@ -60,4 +47,96 @@ function removeErro(){
     dayInput.style.border = '1px solid hsl(0, 0%, 86%)'
     titleInput[0].style.color = 'hsl(0, 1%, 44%)'
     txtErro[0].style.display = 'none'
+
+    monthInput.style.border = '1px solid hsl(0, 0%, 86%)'
+    titleInput[1].style.color = 'hsl(0, 1%, 44%)'
+    txtErro[1].style.display = 'none'
+
+    yearInput.style.border = '1px solid hsl(0, 0%, 86%)'
+    titleInput[2].style.color = 'hsl(0, 1%, 44%)'
+    txtErro[2].style.display = 'none'
 }
+function removeErroDay(){
+    dayInput.style.border = '1px solid hsl(0, 0%, 86%)'
+    titleInput[0].style.color = 'hsl(0, 1%, 44%)'
+    txtErro[0].style.display = 'none'
+}
+function removeErroMonth(){
+    monthInput.style.border = '1px solid hsl(0, 0%, 86%)'
+    titleInput[1].style.color = 'hsl(0, 1%, 44%)'
+    txtErro[1].style.display = 'none'
+}
+function removeErroYear(){
+    yearInput.style.border = '1px solid hsl(0, 0%, 86%)'
+    titleInput[2].style.color = 'hsl(0, 1%, 44%)'
+    txtErro[2].style.display = 'none'   
+}
+function yearValidate(){
+    txtErro[2].innerHTML = 'Must be a Valid Year'
+    txtErro[2].style.display = 'block'
+    inputInfo[2].style.border = '1px solid hsl(0, 100%, 67%)'
+    titleInput[2].style.color = 'hsl(0, 100%, 67%)'
+}
+function monthValidate(){
+    txtErro[1].innerHTML = 'Must be a Valid Month'
+    txtErro[1].style.display = 'block'
+    inputInfo[1].style.border = '1px solid hsl(0, 100%, 67%)'
+    titleInput[1].style.color = 'hsl(0, 100%, 67%)'        
+}
+
+function dayValidate(){
+    txtErro[0].innerHTML = 'Must be a Valid Date'
+    txtErro[0].style.display = 'block'
+    inputInfo[0].style.border = '1px solid hsl(0, 100%, 67%)'
+    titleInput[0].style.color = 'hsl(0, 100%, 67%)'      
+}
+
+
+function sendResult(){
+    var yearInputValue = parseInt(yearInput.value, 10);
+    var monthInputValue = parseInt(monthInput.value, 10);
+    var dayInputValue = parseInt(dayInput.value, 10);
+
+    var validacao = validarData(yearInputValue, monthInputValue, dayInputValue)
+
+    window.alert(`${validacao} ${yearInputValue} ${monthInputValue} ${dayInputValue}`)
+    if(inputInfo[0].value == ''|| inputInfo[1].value == '' ||inputInfo[2].value == ''){
+        if(inputInfo[0].value == '' & inputInfo[1].value == '' &inputInfo[2].value == ''){
+            dayErro();
+            monthErro();
+            yaerErro();
+        }
+        else{
+            if(inputInfo[0].value == ''){
+                dayErro();
+            }        
+            else if(inputInfo[1].value == ''){
+                monthErro();
+            }
+
+            else if(inputInfo[2].value == ''){
+                yaerErro();
+            }
+        }
+    }
+    else{
+        if(validacao == false){
+            dayValidate();
+            monthValidate();
+            yearValidate();
+        }
+        else if(yearInputValue > ano || yearInputValue <= 0){
+            yearValidate();
+        }
+        else if(monthInputValue > 12 || monthInputValue <= 0) {
+            monthValidate();
+        }
+        else{
+            removeErro();
+            ageResult[0].innerHTML = ano - yearInputValue;
+            ageResult[1].innerHTML = mes - monthInputValue;
+            ageResult[2].innerHTML = dia - dayInputValue;            
+        }
+    }
+}
+
