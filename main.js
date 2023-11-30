@@ -99,7 +99,6 @@ function sendResult(){
 
     var validacao = validarData(yearInputValue, monthInputValue, dayInputValue)
 
-    window.alert(`${validacao} ${yearInputValue} ${monthInputValue} ${dayInputValue}`)
     if(inputInfo[0].value == ''|| inputInfo[1].value == '' ||inputInfo[2].value == ''){
         if(inputInfo[0].value == '' & inputInfo[1].value == '' &inputInfo[2].value == ''){
             dayErro();

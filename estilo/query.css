@@ -21,3 +21,72 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+
+@media screen and (min-width:900px) {
+
+
+    main{
+        width: 670px;
+        height: 595px;
+        justify-content: space-around;
+        padding-left: 60px;
+         border-radius: 15px 15px 180px 15px;
+    }
+    #input-div{
+        width: 560px;
+        align-self: baseline;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom: 20px;
+        margin-top: 30px;
+
+    }
+    #input-div > div{
+        margin-left: 30px;
+    }
+    input{
+        width: 123px;
+        height: 60px;
+        text-align: left;
+        padding-left: 20px;
+        font-size: 30px;
+        caret-color: var(--cor0);
+    }
+    #circle{
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 29%;
+        left: 80%;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        background-color: var(--cor0);
+        cursor: pointer;
+        
+    }
+    #circle:hover{
+        background-color: black;
+    }
+    #icon-arrow{
+        width: 45px;
+    }
+    .result{
+        height: 350px;
+        font-size:6rem;
+        margin: 0;
+    }
+    .result > p {
+        
+        line-height: 100px;
+    }
+    .block-none{
+        height: 102px;
+    }
+    .text-erro{
+        display: none;
+        font-size: 12px;
+    }
+    
+/* Estilizando a cor do cursor de texto */
+}
